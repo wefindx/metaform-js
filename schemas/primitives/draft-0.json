@@ -1,3 +1,113 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema"
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "metaform://meta-schemas/primitives",
+    "definitions": {
+        "null": {
+            "type": "null"
+        },
+        "number": {
+            "type": "object",
+            "oneOf": [{
+                "properties": {
+                    "numType": {
+                        "type": "string",
+                        "const": "integer"
+                    },
+                    "value": {
+                        "type": "integer"
+                    }
+                },
+                "required": ["numType", "value"]
+            }, {
+                "properties": {
+                    "numType": {
+                        "type": "string",
+                        "const": "float"
+                    },
+                    "value": {
+                        "type": "number"
+                    }
+                },
+                "required": ["numType", "value"]
+            }, {
+                "properties": {
+                    "numType": {
+                        "type": "string",
+                        "const": "fraction"
+                    },
+                    "value": {
+                        "type": "object",
+                        "properties": {
+                            "numerator": { "type": "integer" },
+                            "denominator": { "type":"integer" }
+                        },
+                        "required": ["numerator", "denominator"],
+                        "additionalProperties": false
+                    }
+                },
+                "required": ["numType", "value"]
+            }, {
+                "properties": {
+                    "numType": {
+                        "type": "string",
+                        "const": "irrational"
+                    },
+                    "value": {
+                        "type": "number"
+                    }
+                },
+                "required": ["numType", "value"]
+            }],
+            "additionalProperties": false
+        },
+        "boolean": {
+            "type": "boolean"
+        },
+        "string": {
+            "type": "string"
+        },
+        "array": {
+            "type": "array"
+        },
+        "ulist": {
+            "type": "object",
+            "properties": {
+                "unordered": true,
+                "elements": {
+                    "type": "array"
+                }
+            },
+            "required": ["unordered", "elements"],
+            "additionalProperties": false
+        },
+        "keyvalue": {
+            "type": "object",
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": ["null", "array", "number", "boolean", "string", "object", "integer"]
+                }
+            },
+            "required": ["key", "value"],
+            "additionalProperties": false
+        },
+        "ref": {
+
+        },
+        "object": {
+            "type": "object",
+            "properties": {
+                
+            },
+            "additionalProperties": false
+        },
+        "lambda-abs": {
+
+        },
+        "lambda-app": {
+
+        }
+    }
 }
